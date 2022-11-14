@@ -1,4 +1,5 @@
 # Just Another Search Bar
+
 ![screenshot](./img/screenshot.png)
 
 Simple GNOME Shell extension just to search from desktop with google/yandex/baidu or with [recoll](https://www.lesbonscomptes.com/recoll/pages/index-recoll.html) full-text desktop search.
