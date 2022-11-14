@@ -1,0 +1,8 @@
+/* Add your custom extension styling here */
+.search-bar-menu {
+    min-width: 20em;
+}
+
+.search-bar:focus {
+    border-color: transparent;
+}

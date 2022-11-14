@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="just-another-search-bar">
+
+    <enum id="org.gnome.shell.extensions.just-another-search-bar.commands">
+        <value nick="google" value="0"/>
+        <value nick="yandex" value="1"/>
+        <value nick="baidu" value="2"/>
+        <value nick="recoll" value="3"/>
+    </enum>
+
+    <schema id="org.gnome.shell.extensions.just-another-search-bar" 
+            path="/org/gnome/shell/extensions/just-another-search-bar/">
+
+        <key name='command-name' enum='org.gnome.shell.extensions.just-another-search-bar.commands'>
+            <default>'google'</default>
+        </key>
+
+        <key type="as" name="open-search-bar-key">
+            <default><![CDATA[['<Control><Alt>f']]]></default>
+            <summary>Open search bar key</summary>
+        </key>
+        
+    </schema>
+
+</schemalist>

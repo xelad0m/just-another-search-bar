@@ -1,0 +1,18 @@
+# Ignore all
+*
+
+# Except these ...
+!.gitignore
+!metadata.json
+!extension.js
+!prefs.js 
+!stylesheet.css
+!LICENSE
+!README.md
+!Makefile
+
+!schemas/
+!schemas/*
+
+!img/
+!img/*
