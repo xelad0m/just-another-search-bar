@@ -1,6 +1,6 @@
 {
   "name": "Just Another Search Bar",
-  "description": "Search from desktop with google/yandex/baidu or with recoll for local documents\nTo open click on the search icon on the menu bar or press Ctrl+Alt+F",
+  "description": "Search from desktop with google/yandex/baidu in default browser\nLocal search is also available using the recoll desktop search tool\nTo open click on the search icon on the menu bar or press Ctrl+Alt+F",
   "uuid": "just-another-search-bar@xelad0m",
   "shell-version": [
     "43"

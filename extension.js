@@ -38,8 +38,16 @@ const ENTER_KEYS = [
     Clutter.KEY_3270_Enter,
 ];
 
+const COMMANDS = [ /* name, template, wildcard, delimiter */
+    ['google', 'xdg-open https://www.google.com/search?q=#', '#', '+'],
+    ['yandex', 'xdg-open https://yandex.ru/search/?text=#', '#', '+'],
+    ['baidu', 'xdg-open https://www.baidu.com/s?wd=#', '#', '%20'],
+    ['recoll', 'recoll -q #', '#', ' '],
+]
+
 class Command {
-    constructor (template, wildcard, delimiter) {
+    constructor (name, template, wildcard, delimiter) {
+        this.name = name;
         this.template = template;
         this.wildcard = wildcard;
         this.delimiter = delimiter;
@@ -50,37 +58,18 @@ class Command {
     }
 }
 
-const CMD_NAMES = [
-    'google', 
-    'yandex', 
-    'baidu', 
-    'recoll',
-]
-
-const COMMANDS = [
-    new Command('xdg-open https://www.google.com/search?q=#', '#', '+'),
-    new Command('xdg-open https://yandex.ru/search/?text=#', '#', '+'),
-    new Command('xdg-open https://www.baidu.com/s?wd=#', '#', '%20'),
-    new Command('recoll -q #', '#', ' '),
-]
-
 const Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
+
     _init() {
         super._init(St.Align.MIDDLE, 'Search Indicator');
+
         this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.just-another-search-bar');
         this._settings.connect("changed", () => {
             log(`[${Me.uuid}] REBIND new keyboard shortcut`);
             this.removeKeybinding();
             this.addKeybinding(() => this.menu.open());
         });
-
-        // let arr = this._settings.get_strv("open-search-bar-key");
-        // log(`[${Me.uuid}]:`, ...arr, arr.length, arr[0], typeof arr[0]);
-        // arr[0] = '<Control><Alt>g';
-        // this._settings.set_strv("open-search-bar-key", arr);
-        // arr = this._settings.get_strv("open-search-bar-key");
-        // log(`[${Me.uuid}]:`, ...arr, arr.length, arr[0], typeof arr[0]);
 
         this.add_child(new St.Icon({
             icon_name: 'edit-find-symbolic',
@@ -145,14 +134,13 @@ class Indicator extends PanelMenu.Button {
 
     _goSearch (query) {
         let commandId = this._settings.get_enum('command-name').toString();
-
-        let command = COMMANDS[commandId].compile(query);
+        let command = new Command(...COMMANDS[commandId]);
 
         try {
-            GLib.spawn_command_line_async(command);
+            GLib.spawn_command_line_async(command.compile(query));
         } catch (e) {
-            logError(e, `[Error spawning command]: ${command}`);
-            Main.notify(`Can't open ${CMD_NAMES[commandId]}`);
+            logError(e, `[Error spawning command]: ${command.compile(query)}`);
+            Main.notify(`Can't open ${command.name}`);
             throw e
         }
     }
