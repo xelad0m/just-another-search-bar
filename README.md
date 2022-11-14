@@ -2,7 +2,7 @@
 
 ![screenshot](./img/screenshot.png)
 
-Simple GNOME Shell extension just to search from desktop with google/yandex/baidu or with [recoll](https://www.lesbonscomptes.com/recoll/pages/index-recoll.html) full-text desktop search.
+Simple GNOME Shell extension just to search from desktop with google/yandex/baidu. Local search is also available using the [recoll](https://www.lesbonscomptes.com/recoll/pages/index-recoll.html) desktop search tool.
 
 To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
 
@@ -20,6 +20,12 @@ To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
     ```
     make uninstall
     ```
+
+- Or 
+
+[<img src="https://raw.githubusercontent.com/andyholmes/gnome-shell-extensions-badge/master/get-it-on-ego.svg?sanitize=true" alt="Get it on GNOME Extensions" height="100" align="middle">](https://extensions.gnome.org/extension/5522/just-another-search-bar/)
+
+
 
 ## Details
 
