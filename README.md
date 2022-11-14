@@ -28,6 +28,6 @@ If you want to **change keyboard shortcut** just type in terminal this command w
 
 ## About
 
-Tested on GNOME Shell 43
+Tested on GNOME 43
 
 Based on [Google Search](https://extensions.gnome.org/extension/1057/google-search/) by [defcat](https://extensions.gnome.org/accounts/profile/defcat)
