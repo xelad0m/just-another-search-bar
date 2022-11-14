@@ -14,10 +14,10 @@ To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
     make install
     ```
 
-- Remove:
+- Uninstall:
 
     ```
-    make remove
+    make uninstall
     ```
 
 ## Details
