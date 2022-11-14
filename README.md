@@ -21,7 +21,7 @@ To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
     make uninstall
     ```
 
-- Or 
+- Or just:
 
 [<img src="https://raw.githubusercontent.com/andyholmes/gnome-shell-extensions-badge/master/get-it-on-ego.svg?sanitize=true" alt="Get it on GNOME Extensions" height="100" align="middle">](https://extensions.gnome.org/extension/5522/just-another-search-bar/)
 
