@@ -30,7 +30,7 @@ const ExtensionUtils = imports.misc.extensionUtils; // settings, translations
 
 const Me = ExtensionUtils.getCurrentExtension();
 
-const AllEnterKeys = [
+const ENTER_KEYS = [
     Clutter.KEY_Return,
     Clutter.KEY_KP_Enter,
     Clutter.KEY_ISO_Enter,
@@ -135,7 +135,7 @@ class Indicator extends PanelMenu.Button {
     _onSearchKeyPress(actor, event) {
         let symbol = event.get_key_symbol();
         let query = this.searchBar.get_text();
-        if (AllEnterKeys.includes(symbol) && query.length > 0) {    
+        if (ENTER_KEYS.includes(symbol) && query.length > 0) {    
             this._goSearch(query);
             this.searchBar.set_text('');
             this.menu.close();
