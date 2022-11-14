@@ -1,4 +1,4 @@
-MODULES = extension.js metadata.json stylesheet.css LICENSE README.md prefs.js schemas/
+MODULES = metadata.json extension.js prefs.js stylesheet.css LICENSE README.md schemas/
 INSTALLPATH=~/.local/share/gnome-shell/extensions/just-another-search-bar@xelad0m
 
 all: compile-settings
