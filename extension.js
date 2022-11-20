@@ -173,9 +173,11 @@ class Extension {
     enable() {
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this._uuid, this._indicator);
+        this._indicator.addKeybinding(() => this._indicator.menu.open());   // or shell loses bindings
     }
 
     disable() {
+        this._indicator.removeKeybinding();
         this._indicator.destroy();
         this._indicator = null;
     }

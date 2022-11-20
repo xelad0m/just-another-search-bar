@@ -13,8 +13,10 @@ install: all
 	gnome-extensions enable just-another-search-bar@xelad0m
 
 uninstall:
-	gnome-extensions disable just-another-search-bar@xelad0m
+	gnome-extensions disable just-another-search-bar@xelad0m || (echo "not installed"; exit 1)
 	rm -rf $(INSTALLPATH)
 
 bundle: all
 	zip -r bundle.zip $(MODULES)
+
+.PHONY: all compile-settings install uninstall bundle 
