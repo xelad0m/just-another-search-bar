@@ -1,22 +1,22 @@
-MODULES = metadata.json extension.js prefs.js stylesheet.css LICENSE README.md schemas/
-INSTALLPATH=~/.local/share/gnome-shell/extensions/just-another-search-bar@xelad0m
+NAME = just-another-search-bar
+LANG = ru
 
-all: compile-settings
+all: install
 
-compile-settings:
+schemas:
 	glib-compile-schemas --strict --targetdir=schemas/ schemas
 
-install: all
-	rm -rf $(INSTALLPATH)
-	mkdir -p $(INSTALLPATH)
-	cp -r $(MODULES) $(INSTALLPATH)/
-	gnome-extensions enable just-another-search-bar@xelad0m
+gettext:
+	mkdir -p po
+	xgettext --from-code=UTF-8 --output=po/$(LANG).po *.js
+
+bundle:
+	gnome-extensions pack --force --podir=po .
+
+install: bundle
+	gnome-extensions install --force $(NAME)@xelad0m.shell-extension.zip
 
 uninstall:
-	gnome-extensions disable just-another-search-bar@xelad0m || (echo "not installed"; exit 1)
-	rm -rf $(INSTALLPATH)
+	gnome-extensions uninstall $(NAME)@xelad0m
 
-bundle: all
-	zip -r bundle.zip $(MODULES)
-
-.PHONY: all compile-settings install uninstall bundle 
+.PHONY: all schemas gettext bundle install uninstall 

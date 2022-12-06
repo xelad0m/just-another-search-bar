@@ -30,6 +30,10 @@ const ExtensionUtils = imports.misc.extensionUtils; // settings, translations
 
 const Me = ExtensionUtils.getCurrentExtension();
 
+const Gettext = imports.gettext;
+const Domain = Gettext.domain(Me.metadata.uuid);
+const _ = Domain.gettext;
+
 const ENTER_KEYS = [
     Clutter.KEY_Return,
     Clutter.KEY_KP_Enter,
@@ -38,26 +42,6 @@ const ENTER_KEYS = [
     Clutter.KEY_3270_Enter,
 ];
 
-const COMMANDS = [ /* name, template, wildcard, delimiter */
-    ['google', 'xdg-open https://www.google.com/search?q=#', '#', '+'],
-    ['yandex', 'xdg-open https://yandex.ru/search/?text=#', '#', '+'],
-    ['baidu', 'xdg-open https://www.baidu.com/s?wd=#', '#', '%20'],
-    ['recoll', 'recoll -q #', '#', ' '],
-]
-
-class Command {
-    constructor (name, template, wildcard, delimiter) {
-        this.name = name;
-        this.template = template;
-        this.wildcard = wildcard;
-        this.delimiter = delimiter;
-    }
-    compile(query) {
-        query = query.trim().replace(/ /g, this.delimiter);
-        return this.template.replace(this.wildcard, query);
-    }
-}
-
 const Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
 
@@ -65,10 +49,10 @@ class Indicator extends PanelMenu.Button {
         super._init(St.Align.MIDDLE, 'Search Indicator');
 
         this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.just-another-search-bar');
-        this._settings.connect("changed", () => {
-            log(`[${Me.uuid}] REBIND new keyboard shortcut`);
+        this._settings.connect("changed::open-search-bar-key", () => {
+            log(`[${Me.uuid}] rebind new keyboard shortcut`);
             this.removeKeybinding();
-            this.addKeybinding(() => this.menu.open());
+            this.addKeybinding(() => this.menu.toggle());
         });
 
         this.add_child(new St.Icon({
@@ -94,7 +78,7 @@ class Indicator extends PanelMenu.Button {
         this.searchBar.connect('primary-icon-clicked', this._onSearchIcoClick.bind(this));
         this.searchBar.connect('secondary-icon-clicked', () => { 
             this.menu.close();
-            ExtManager.openExtensionPrefs(Me.uuid, '', {});
+            ExtensionUtils.openPrefs()
         });
 
         let entry = this.searchBar.clutter_text;
@@ -108,7 +92,7 @@ class Indicator extends PanelMenu.Button {
 
         this.menu.connect('open-state-changed', this._focus.bind(this));
         
-        this.addKeybinding(() => this.menu.open());
+        this.addKeybinding(() => this.menu.toggle());
     }
 
     _onSearchIcoClick(actor, event) {
@@ -132,15 +116,25 @@ class Indicator extends PanelMenu.Button {
         return Clutter.EVENT_PROPAGATE;
     }
 
-    _goSearch (query) {
-        let commandId = this._settings.get_enum('command-name').toString();
-        let command = new Command(...COMMANDS[commandId]);
+    _compileCommand(template, wildcard, delimiter, query) {
+        query = String(query).trim().replace(/ /g, String(delimiter));
+        return (wildcard != '') ? String(template).replace(String(wildcard), query) 
+                                : String(template) + ' ' + query;
+    }
 
+    _goSearch (query) {
+        let cmdId = this._settings.get_int('command-id');
+        let cmdName = this._settings.get_strv('command-names')[cmdId];
+        let template = this._settings.get_strv('command-templates')[cmdId];
+        let wildcard = this._settings.get_strv('command-wildcards')[cmdId];
+        let delimiter = this._settings.get_strv('command-delimiters')[cmdId];
+
+        let command = this._compileCommand(template, wildcard, delimiter, query);
         try {
-            GLib.spawn_command_line_async(command.compile(query));
+            GLib.spawn_command_line_async(command);
         } catch (e) {
-            logError(e, `[Error spawning command]: ${command.compile(query)}`);
-            Main.notify(`Can't open ${command.name}`);
+            logError(e, `[${Me.uuid}] [Error spawning command]: ${command}`);
+            Main.notify(_("Can't open ") + `${cmdName}`);
             throw e
         }
     }
@@ -150,7 +144,7 @@ class Indicator extends PanelMenu.Button {
             setTimeout(() => global.stage.set_key_focus(this.searchBar), 100);
         }
     }
-
+    
     addKeybinding(handler) {
         Main.wm.addKeybinding(
             "open-search-bar-key",
@@ -173,7 +167,7 @@ class Extension {
     enable() {
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this._uuid, this._indicator);
-        this._indicator.addKeybinding(() => this._indicator.menu.open());   // or shell loses bindings
+        this._indicator.addKeybinding(() => this._indicator.menu.toggle()); // or shell may lose binding on sleep etc
     }
 
     disable() {
@@ -183,6 +177,9 @@ class Extension {
     }
 }
 
-function init(meta) {
-    return new Extension(meta.uuid);
+function init() {
+    log(`[${Me.metadata.name}] initializing`);
+
+    ExtensionUtils.initTranslations(Me.metadata.uuid);
+    return new Extension();
 }

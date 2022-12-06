@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="just-another-search-bar">
 
-    <enum id="org.gnome.shell.extensions.just-another-search-bar.commands">
-        <value nick="google" value="0"/>
-        <value nick="yandex" value="1"/>
-        <value nick="baidu" value="2"/>
-        <value nick="recoll" value="3"/>
-    </enum>
+<schemalist gettext-domain="just-another-search-bar">
 
     <schema id="org.gnome.shell.extensions.just-another-search-bar" 
             path="/org/gnome/shell/extensions/just-another-search-bar/">
 
-        <key name='command-name' enum='org.gnome.shell.extensions.just-another-search-bar.commands'>
-            <default>'google'</default>
-        </key>
-
         <key type="as" name="open-search-bar-key">
             <default><![CDATA[['<Control><Alt>f']]]></default>
             <summary>Open search bar key</summary>
+        </key>
+
+        <key type="i" name='command-id'>
+            <default>0</default>
+            <summary>Store current default command number</summary>
+        </key>
+
+        <key type="as" name="command-names">
+            <default>['google', 'yandex', 'baidu', 'recoll']</default>
+            <summary>Store the commands names</summary>
+        </key>
+
+        <key type="as" name="command-templates">
+            <default>['xdg-open https://www.google.com/search?q=#','xdg-open https://yandex.ru/search/?text=#','xdg-open https://www.baidu.com/s?wd=#','recoll -q #']</default>
+            <summary>Store the command line templates</summary>
+        </key>
+
+        <key type="as" name="command-wildcards">
+            <default>['#', '#', '#', '#']</default>
+            <summary>Store the commands wildcards</summary>
+        </key>
+
+        <key type="as" name="command-delimiters">
+            <default>['+', '+', '%20', ' ']</default>
+            <summary>Store the commands delimiters</summary>
         </key>
         
     </schema>

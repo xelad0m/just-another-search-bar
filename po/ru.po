@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-06 12:53+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: extension.js:137
+msgid "Can't open "
+msgstr "Не могу открыть "
+
+#: prefs.js:40
+msgid "Preferences"
+msgstr "Настройки"
+
+#: prefs.js:50
+msgid "Search command"
+msgstr "Команда для поиска"
+
+#: prefs.js:55
+msgid "Default search"
+msgstr "Поиск по умолчанию"
+
+#: prefs.js:56
+msgid "Choose, add, remove or edit entry"
+msgstr "Выбор, добавление, удаление и редактирование записей"
+
+#: prefs.js:101
+msgid "Name"
+msgstr "Имя команды"
+
+#: prefs.js:102
+msgid "This entry name. Edit and save to create new entry"
+msgstr "Название данной записи. Измените и нажмите\nсохранить, чтобы создать новую запись"
+
+#: prefs.js:114
+msgid "Command"
+msgstr "Команда"
+
+#: prefs.js:115
+msgid "Comman line template with wildcarded query"
+msgstr "Шаблон командной строки с заменителем на\nместе подстановки запроса"
+
+#: prefs.js:128
+msgid "Wildcard"
+msgstr "Подстановочный знак"
+
+#: prefs.js:129
+msgid "Symbol used as wildcard for query in command line"
+msgstr "Подстановочный знак для запроса в шаблоне\nкомандной строки"
+
+#: prefs.js:141
+msgid "Query delimiter"
+msgstr "Разделитель"
+
+#: prefs.js:142
+msgid "Symbol to use as delimiter for query tokens"
+msgstr "Символ, использующийся для разделения\nтокенов в запросе"
+
+#: prefs.js:150
+msgid "test query"
+msgstr "пример запроса"
+
+#: prefs.js:154
+msgid "Example query"
+msgstr "Пример запроса"
+
+#: prefs.js:165
+msgid "Result command line:"
+msgstr "Итоговая командная строка"
+
+#: prefs.js:176
+msgid "Save"
+msgstr "Сохранить"
+
+#: prefs.js:194
+msgid "...new keyboard shortcut..."
+msgstr "...новое сочетание клавиш..."
+
+#: prefs.js:204
+msgid "Search bar activation"
+msgstr "Активация строки поиска"
+
+#: prefs.js:207
+msgid "Keyboard shortcut"
+msgstr "Сочетание клавиш"
+
+#: prefs.js:208
+msgid "Press button to enter new keyboard shortcut"
+msgstr "Нажмите кнопку, чтобы ввести\nновое сочетание клавиш"
+
+#: prefs.js:218
+msgid "Reset defaults"
+msgstr "Сброс настроек"
+
+#: prefs.js:227
+msgid "Reset"
+msgstr "Сброс"
+
+#: prefs.js:228
+msgid "Reset all settings to defaults, drop all new entries"
+msgstr "Сброс всех настроек и удаление всеx добавленных записей"

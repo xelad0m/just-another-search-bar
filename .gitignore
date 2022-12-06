@@ -12,7 +12,10 @@
 !Makefile
 
 !schemas/
-!schemas/*
+!schemas/*.xml
 
 !img/
 !img/*
+
+!po/
+!po/*.po
