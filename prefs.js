@@ -312,7 +312,6 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
     }
 
     _saveEntry() {
-        // let cmdId = this._settings.get_int('command-id');
         let names= this._settings.get_strv('command-names');
         let templates = this._settings.get_strv('command-templates');
         let wildcards = this._settings.get_strv('command-wildcards');
@@ -344,7 +343,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
 
         this.currentSearchCmdMenu.set_selected(this._settings.get_int('command-id')); 
 
-        log(`[${Me.uuid}] save button pressed: ${status}, switch to ${names.indexOf(nameCmd)}`);
+        log(`[${Me.uuid}] save button pressed: switch to ${names.indexOf(nameCmd)}`);
     }
 
     _compileCommand(template, wildcard, delimiter, query) {

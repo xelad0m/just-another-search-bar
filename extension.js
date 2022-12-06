@@ -42,6 +42,8 @@ const ENTER_KEYS = [
     Clutter.KEY_3270_Enter,
 ];
 
+let getFocusTimerID = null;
+
 const Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
 
@@ -141,7 +143,7 @@ class Indicator extends PanelMenu.Button {
 
     _focus (menu, open) {
         if (open) {
-            setTimeout(() => global.stage.set_key_focus(this.searchBar), 100);
+            getFocusTimerID = setTimeout(() => global.stage.set_key_focus(this.searchBar), 100);
         }
     }
     
@@ -174,12 +176,15 @@ class Extension {
         this._indicator.removeKeybinding();
         this._indicator.destroy();
         this._indicator = null;
+        
+        if (getFocusTimerID) {
+            GLib.Source.remove(getFocusTimerID);
+            getFocusTimerID = null;
+        }
     }
 }
 
 function init() {
-    log(`[${Me.metadata.name}] initializing`);
-
     ExtensionUtils.initTranslations(Me.metadata.uuid);
     return new Extension();
 }
