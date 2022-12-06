@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 12:53+0300\n"
+"POT-Creation-Date: 2022-12-06 22:30+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:137
+#: extension.js:139
 msgid "Can't open "
 msgstr "Не могу открыть "
 
@@ -42,7 +42,7 @@ msgid "Name"
 msgstr "Имя команды"
 
 #: prefs.js:102
-msgid "This entry name. Edit and save to create new entry"
+msgid "This entry name. Edit and press save to create new entry"
 msgstr "Название данной записи. Измените и нажмите\nсохранить, чтобы создать новую запись"
 
 #: prefs.js:114
@@ -50,7 +50,7 @@ msgid "Command"
 msgstr "Команда"
 
 #: prefs.js:115
-msgid "Comman line template with wildcarded query"
+msgid "Command line template with wildcarded query"
 msgstr "Шаблон командной строки с заменителем на\nместе подстановки запроса"
 
 #: prefs.js:128

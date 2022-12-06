@@ -99,7 +99,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         });
         let cmdNameEntryRow = new Adw.ActionRow({
             title: _('Name'),
-            subtitle: _('This entry name. Edit and save to create new entry'),
+            subtitle: _('This entry name. Edit and press save to create new entry'),
             activatable_widget: this.cmdNameEntry
         });
         this.cmdNameEntry.connect('notify::text', this._updateCommandExample.bind(this));
@@ -112,7 +112,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         });
         let cmdTemplateEntryRow = new Adw.ActionRow({
             title: _('Command'),
-            subtitle: _('Comman line template with wildcarded query'),
+            subtitle: _('Command line template with wildcarded query'),
             activatable_widget: this.cmdTemplateEntry
         });
         this.cmdTemplateEntry.connect('notify::text', this._updateCommandExample.bind(this));

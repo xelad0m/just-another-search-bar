@@ -143,7 +143,10 @@ class Indicator extends PanelMenu.Button {
 
     _focus (menu, open) {
         if (open) {
-            getFocusTimerID = setTimeout(() => global.stage.set_key_focus(this.searchBar), 100);
+            getFocusTimerID = setTimeout(() => { 
+                global.stage.set_key_focus(this.searchBar);
+                getFocusTimerID = null;
+            }, 100);
         }
     }
     
