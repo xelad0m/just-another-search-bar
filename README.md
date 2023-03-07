@@ -4,7 +4,28 @@
 
 Simple GNOME Shell extension for performing search queries from desktop. Some search engines are added as examples, you can add your own, including local search tools with suitable CLI.
 
+It can also be used as a launcher for any user commands and scripts that require additional text input.
+
 To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
+
+## Example
+
+To **remove** an entry:
+- select entry in preferences and click `-` button.
+
+To **add** an entry you can:
+1. Click `+` button in preferences
+2. Fill in the fields. For example, to add `duckduckgo`:
+    - Name: `duckduckgo`
+    - Command: `xdg-open https://duckduckgo.com/?q=#`
+    - Wildcard: `#`
+    - Query delimiter: `+`
+3. Click `Save` button
+
+Or you can select any existing entry, expand row, edit entry (including the field "Name"), click `Save` button. In this case existing entry will not be changed.
+
+To **change** an    entry:
+- select existing entry, expand row, change fields (except the field "Name"), click `Save` button
 
 ## Install
 
