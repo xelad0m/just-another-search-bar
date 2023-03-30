@@ -3,7 +3,7 @@
   "description": "Simple GNOME Shell extension for performing search queries\nfrom desktop. Some search engines are added as examples, you can add your own,\nincluding local search tools with suitable CLI",
   "uuid": "just-another-search-bar@xelad0m",
   "shell-version": [
-    "43"
+    "43","44"
   ],
   "settings-schema": "org.gnome-shell.extensions.just-another-search-bar", 
   "url": "https://github.com/xelad0m/just-another-search-bar", 
