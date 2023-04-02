@@ -10,6 +10,9 @@ To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
 
 ## Example
 
+Open preferences
+![screenshot](./img/prefs1.png)
+
 To **remove** an entry:
 - select entry in preferences and click `-` button.
 
@@ -22,7 +25,9 @@ To **add** an entry you can:
     - Query delimiter: `+`
 3. Click `Save` button
 
-Or you can select any existing entry, expand row, edit entry (including the field "Name"), click `Save` button. In this case existing entry will not be changed.
+![screenshot](./img/prefs2.png)
+
+Or you can select any existing entry, expand row, edit entry (including the field "Name"), click `Save` button. In this case existing entry will not be changed and new entry will be added.
 
 To **change** an    entry:
 - select existing entry, expand row, change fields (except the field "Name"), click `Save` button
