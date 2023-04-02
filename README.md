@@ -11,6 +11,7 @@ To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
 ## Example
 
 Open preferences
+
 ![screenshot](./img/prefs1.png)
 
 To **remove** an entry:
