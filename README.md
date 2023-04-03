@@ -4,7 +4,7 @@
 
 Simple GNOME Shell extension for performing search queries from desktop. Some search engines are added as examples, you can add your own, including local search tools with suitable CLI.
 
-It can also be used as a launcher for any user commands and scripts that require additional text input.
+It can also be used as a launcher for any user commands and scripts that require additional text input ([notification example](./img/prefs3.png)).
 
 To **open** click on the search icon on the menu bar or press `Ctrl+Alt+F`
 
