@@ -38,7 +38,7 @@ To **change** an    entry:
 - Install: 
     
     ```
-    git clone https://github.com/xelad0m/just-another-search-bar & cd just-another-search-bar
+    git clone https://github.com/xelad0m/just-another-search-bar && cd just-another-search-bar
     make install
     ```
 
