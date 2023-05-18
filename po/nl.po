@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-06 22:30+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3\n"
+
+#: extension.js:139
+msgid "Can't open "
+msgstr "Openen mislukt: "
+
+#: prefs.js:40
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: prefs.js:50
+msgid "Search command"
+msgstr "Zoekopdracht"
+
+#: prefs.js:55
+msgid "Default search"
+msgstr "Standaard"
+
+#: prefs.js:56
+msgid "Choose, add, remove or edit entry"
+msgstr "Item kiezen, toevoegen, bewerken of verwijderen"
+
+#: prefs.js:101
+msgid "Name"
+msgstr "Naam"
+
+#: prefs.js:102
+msgid "This entry name. Edit and press save to create new entry"
+msgstr "De naam van het item. Klik op opslaan om het item te maken."
+
+#: prefs.js:114
+msgid "Command"
+msgstr "Opdracht"
+
+#: prefs.js:115
+msgid "Command line template with wildcarded query"
+msgstr "De opdrachtregel van een zoekopdracht met jokerteken"
+
+#: prefs.js:128
+msgid "Wildcard"
+msgstr "Jokerteken"
+
+#: prefs.js:129
+msgid "Symbol used as wildcard for query in command line"
+msgstr "Het te gebruiken jokerteken op de opdrachtregel"
+
+#: prefs.js:141
+msgid "Query delimiter"
+msgstr "Itemscheiding"
+
+#: prefs.js:142
+msgid "Symbol to use as delimiter for query tokens"
+msgstr "Het te gebruiken teken om items te scheiden"
+
+#: prefs.js:150
+msgid "test query"
+msgstr "Testopdracht"
+
+#: prefs.js:154
+msgid "Example query"
+msgstr "Voorbeeldopdracht"
+
+#: prefs.js:165
+msgid "Result command line:"
+msgstr "Resultaat:"
+
+#: prefs.js:176
+msgid "Save"
+msgstr "Opslaan"
+
+#: prefs.js:194
+msgid "...new keyboard shortcut..."
+msgstr "Nieuwe sneltoets…"
+
+#: prefs.js:204
+msgid "Search bar activation"
+msgstr "Zoekbalk focussen"
+
+#: prefs.js:207
+msgid "Keyboard shortcut"
+msgstr "Sneltoets"
+
+#: prefs.js:208
+msgid "Press button to enter new keyboard shortcut"
+msgstr "Druk op een toetsencombinatie om deze toe te wijzen"
+
+#: prefs.js:218
+msgid "Reset defaults"
+msgstr "Standaardwaarden"
+
+#: prefs.js:227
+msgid "Reset"
+msgstr "Standaardwaarden"
+
+#: prefs.js:228
+msgid "Reset all settings to defaults, drop all new entries"
+msgstr "Herstel alle standaardvoorkeuren en wis nieuwe items"
