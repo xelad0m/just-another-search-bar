@@ -35,26 +35,11 @@ To **change** an    entry:
 
 ## Install
 
-- Install: 
-    
-    ```
-    git clone https://github.com/xelad0m/just-another-search-bar && cd just-another-search-bar
-    make install
-    ```
-
-- Uninstall:
-
-    ```
-    make uninstall
-    ```
-
-- Or just:
-
 [<img src="https://raw.githubusercontent.com/andyholmes/gnome-shell-extensions-badge/master/get-it-on-ego.svg?sanitize=true" alt="Get it on GNOME Extensions" height="100" align="middle">](https://extensions.gnome.org/extension/5522/just-another-search-bar/)
 
 
 ## About
 
-Tested on GNOME Shell 43, 44
+Tested on GNOME Shell 43, 44, 45
 
 Based on [Google Search](https://extensions.gnome.org/extension/1057/google-search/) extension

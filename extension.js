@@ -18,21 +18,21 @@
 
 /* Based on Google Search (https://extensions.gnome.org/extension/1057/google-search/) */
 
-/* exported init */
 
-const { GObject, St, Clutter, Meta, Shell, GLib } = imports.gi;
+import GObject from 'gi://GObject';
+import St from 'gi://St';
 
-const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-const PopupMenu = imports.ui.popupMenu;
-const ExtManager = Main.extensionManager;           // open preferences
-const ExtensionUtils = imports.misc.extensionUtils; // settings, translations
+import Clutter from 'gi://Clutter';
+import Meta from 'gi://Meta';
+import Shell from 'gi://Shell';
+import GLib from 'gi://GLib';
 
-const Me = ExtensionUtils.getCurrentExtension();
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
-const Gettext = imports.gettext;
-const Domain = Gettext.domain(Me.metadata.uuid);
-const _ = Domain.gettext;
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+
 
 const ENTER_KEYS = [
     Clutter.KEY_Return,
@@ -44,15 +44,46 @@ const ENTER_KEYS = [
 
 let getFocusTimerID = null;
 
+
+export default class SearchIndicator extends Extension {
+    enable() {
+        
+        log(`[ Search Bar ] ENABLING`);
+        
+        this._settings = this.getSettings('org.gnome-shell.extensions.just-another-search-bar');
+        this._indicator = new Indicator(this._settings, () => { this.openPreferences(); });
+
+        Main.panel.addToStatusArea(this.uuid, this._indicator);
+        this._indicator.addKeybinding(() => this._indicator.menu.toggle()); // or shell may lose binding on sleep etc
+    }
+
+    disable() {
+
+        log(`[ Search Bar ] DISABLING`);
+
+        this._indicator.removeKeybinding();
+        this._indicator.destroy();
+        this._indicator = null;
+        this._settings = null;
+        
+        if (getFocusTimerID) {
+            GLib.Source.remove(getFocusTimerID);
+            getFocusTimerID = null;
+        }
+    }
+};
+
+
 const Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
 
-    _init() {
-        super._init(St.Align.MIDDLE, 'Search Indicator');
-
-        this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.just-another-search-bar');
+    _init(settings, prefs) {
+        super._init(0.0, 'Search Indicator');
+        
+        this._settings = settings;
+        this._prefs = prefs;
         this._settings.connect("changed::open-search-bar-key", () => {
-            log(`[${Me.uuid}] rebind new keyboard shortcut`);
+            log(`[ Search Bar ] rebind new keyboard shortcut`);
             this.removeKeybinding();
             this.addKeybinding(() => this.menu.toggle());
         });
@@ -80,7 +111,7 @@ class Indicator extends PanelMenu.Button {
         this.searchBar.connect('primary-icon-clicked', this._onSearchIcoClick.bind(this));
         this.searchBar.connect('secondary-icon-clicked', () => { 
             this.menu.close();
-            ExtensionUtils.openPrefs()
+            this._prefs();
         });
 
         let entry = this.searchBar.clutter_text;
@@ -135,7 +166,7 @@ class Indicator extends PanelMenu.Button {
         try {
             GLib.spawn_command_line_async(command);
         } catch (e) {
-            logError(e, `[${Me.uuid}] [Error spawning command]: ${command}`);
+            logError(e, `[ Search Bar ] [Error spawning command]: ${command}`);
             Main.notify(_("Can't open ") + `${cmdName}`);
             throw e
         }
@@ -162,32 +193,4 @@ class Indicator extends PanelMenu.Button {
     removeKeybinding() {
         Main.wm.removeKeybinding("open-search-bar-key");
     }
-});
-
-class Extension {
-    constructor(uuid) {
-        this._uuid = uuid;
-    }
-
-    enable() {
-        this._indicator = new Indicator();
-        Main.panel.addToStatusArea(this._uuid, this._indicator);
-        this._indicator.addKeybinding(() => this._indicator.menu.toggle()); // or shell may lose binding on sleep etc
-    }
-
-    disable() {
-        this._indicator.removeKeybinding();
-        this._indicator.destroy();
-        this._indicator = null;
-        
-        if (getFocusTimerID) {
-            GLib.Source.remove(getFocusTimerID);
-            getFocusTimerID = null;
-        }
-    }
-}
-
-function init() {
-    ExtensionUtils.initTranslations(Me.metadata.uuid);
-    return new Extension();
-}
+})

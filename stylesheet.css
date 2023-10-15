@@ -6,7 +6,3 @@
 .search-bar:focus {
     border-color: transparent;
 }
-
-row.box.title {
-    width: 50%;
-}

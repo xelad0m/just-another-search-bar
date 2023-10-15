@@ -16,35 +16,40 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-const { Adw, Gio, GObject, Gtk, Gdk } = imports.gi;
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Adw from 'gi://Adw';
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
+import Gdk from 'gi://Gdk';
 
-const Gettext = imports.gettext;
-const Domain = Gettext.domain(Me.metadata.uuid);
-const _ = Domain.gettext;
+import { 
+    ExtensionPreferences, 
+    gettext as _ 
+} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-function init() {
-    ExtensionUtils.initTranslations(Me.metadata.uuid);
-}
 
-function buildPrefsWidget() {
-    return new MyNoodleCodedPrefPage();
-}
+export default class SearchPreferences extends ExtensionPreferences {
+    fillPreferencesWindow(window) {
+        window._settings = this.getSettings('org.gnome-shell.extensions.just-another-search-bar');
+        const page = new MyNoodleCodedPrefPage(window._settings);
+        window.add(page);
+    }
+};
 
-var MyNoodleCodedPrefPage = GObject.registerClass(
+
+
+const MyNoodleCodedPrefPage = GObject.registerClass(
 class SearchPreferencesPage extends Adw.PreferencesPage {
-    _init() {
+    _init(settings) {
         super._init({
             title: _("Preferences"),
             icon_name: 'preferences-system-symbolic',
             name: 'GeneralPreferences'
         });
-        this._settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.just-another-search-bar');
+        this._settings = settings;
 
 
-
+        
         // group 1 choose, add, remove, edit commands
         let searchEngineGroup = new Adw.PreferencesGroup({
             title: _('Search command'),
@@ -84,7 +89,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
             this._settings.set_int('command-id', widget.selected);
             this._updateCommandContent();
 
-            log(`[${Me.uuid}] cmdId = ${widget.selected}`);
+            log(`[ Search Bar ] cmdId = ${widget.selected}`);
         });
         
         this.chooseSearchCmdExpanderRow.add_prefix(this.currentSearchCmdMenu);
@@ -244,7 +249,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         this.currentSearchCmdMenu.model = currentSearchList;
         this.currentSearchCmdMenu.set_selected(this._settings.get_int('command-id')); 
         
-        log(`[${Me.uuid}] Search commands list updated`);
+        log(`[ Search Bar ] Search commands list updated`);
     }
 
     // ON notify::expanded notify::selected
@@ -279,7 +284,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
     _addEntry() {
         this.chooseSearchCmdExpanderRow.expanded = true;
         this.cmdNameEntry.text = this.cmdTemplateEntry.text = this.cmdWildcardEntry.text = this.cmdDelimEntry.text = '';
-        log(`[${Me.uuid}] add button pressed`);
+        log(`[ Search Bar ] add button pressed`);
     }
 
     _removeEntry() {
@@ -308,7 +313,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         
         this.currentSearchCmdMenu.set_selected(this._settings.get_int('command-id'));
         
-        log(`[${Me.uuid}] remove button pressed: removing ${cmdId}, switch to ${switchTo}`);
+        log(`[ Search Bar ] remove button pressed: removing ${cmdId}, switch to ${switchTo}`);
     }
 
     _saveEntry() {
@@ -343,7 +348,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
 
         this.currentSearchCmdMenu.set_selected(this._settings.get_int('command-id')); 
 
-        log(`[${Me.uuid}] save button pressed: switch to ${names.indexOf(nameCmd)}`);
+        log(`[ Search Bar ] save button pressed: switch to ${names.indexOf(nameCmd)}`);
     }
 
     _compileCommand(template, wildcard, delimiter, query) {
@@ -373,7 +378,7 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         evck.connect('key-released', () => {
             if ((pressed == ++released)) {
                 this.remove_controller(evck);
-                log(`[${Me.uuid}] Binding is: ${binding}`);
+                log(`[ Search Bar ] Binding is: ${binding}`);
                 this._settings.set_strv('open-search-bar-key', [binding]);
             }
             return Gdk.EVENT_STOP;
@@ -391,4 +396,4 @@ class SearchPreferencesPage extends Adw.PreferencesPage {
         this._updateSearchCommandsList();
         this.chooseSearchCmdExpanderRow.expanded = false;
     }
-})
+});
