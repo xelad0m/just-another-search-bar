@@ -30,7 +30,7 @@ import {
 
 export default class SearchPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
-        window._settings = this.getSettings('org.gnome-shell.extensions.just-another-search-bar');
+        window._settings = this.getSettings();
         const page = new MyNoodleCodedPrefPage(window._settings);
         window.add(page);
     }

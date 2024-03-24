@@ -50,7 +50,7 @@ export default class SearchIndicator extends Extension {
         
         log(`[ Search Bar ] ENABLING`);
         
-        this._settings = this.getSettings('org.gnome-shell.extensions.just-another-search-bar');
+        this._settings = this.getSettings();
         this._indicator = new Indicator(this._settings, () => { this.openPreferences(); });
 
         Main.panel.addToStatusArea(this.uuid, this._indicator);
@@ -118,7 +118,7 @@ class Indicator extends PanelMenu.Button {
         entry.connect('key-press-event', this._onSearchKeyPress.bind(this));
 
         let popupSearch = new PopupMenu.PopupMenuSection();
-        popupSearch.actor.add_actor(this.searchBar);
+        popupSearch.actor = this.searchBar;
 
         this.menu.addMenuItem(popupSearch);
         this.menu.actor.add_style_class_name('search-bar-menu');
