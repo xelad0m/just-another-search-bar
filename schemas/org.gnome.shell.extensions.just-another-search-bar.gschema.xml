@@ -16,22 +16,22 @@
         </key>
 
         <key type="as" name="command-names">
-            <default>['google', 'yandex', 'baidu', 'recoll']</default>
+            <default>['google', 'yandex', 'baidu', 'bing', 'duckduckgo', 'wiki', 'recoll']</default>
             <summary>Store the commands names</summary>
         </key>
 
         <key type="as" name="command-templates">
-            <default>['xdg-open https://www.google.com/search?q=#','xdg-open https://yandex.ru/search/?text=#','xdg-open https://www.baidu.com/s?wd=#','recoll -q #']</default>
+            <default>['xdg-open https://www.google.com/search?q=#','xdg-open https://yandex.ru/search/?text=#','xdg-open https://www.baidu.com/s?wd=#','xdg-open https://www.bing.com/search?q=#','xdg-open https://duckduckgo.com/?q=#','xdg-open https://wikipedia.org/w/index.php?search=#','recoll -q #']</default>
             <summary>Store the command line templates</summary>
         </key>
 
         <key type="as" name="command-wildcards">
-            <default>['#', '#', '#', '#']</default>
+            <default>['#', '#', '#', '#','#','#','#']</default>
             <summary>Store the commands wildcards</summary>
         </key>
 
         <key type="as" name="command-delimiters">
-            <default>['+', '+', '%20', ' ']</default>
+            <default>['+', '+', '%20', '+','+','+',' ']</default>
             <summary>Store the commands delimiters</summary>
         </key>
         
