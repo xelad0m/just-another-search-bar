@@ -40,6 +40,6 @@ To **change** an    entry:
 
 ## About
 
-Tested on GNOME Shell 42, 43, 44, 45, 46
+Tested on GNOME Shell 42, 43, 44, 45, 46, 47
 
 Based on [Google Search](https://extensions.gnome.org/extension/1057/google-search/) extension

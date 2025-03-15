@@ -1,5 +1,5 @@
 {
-  "shell-version": ["45","46"],
+  "shell-version": ["45","46","47"],
   "name": "Just Another Search Bar",
   "description": "Simple GNOME Shell extension for performing search queries\nfrom desktop. Some search engines are added as examples, you can add your own,\nincluding local search tools with suitable CLI",
   "uuid": "just-another-search-bar@xelad0m",
