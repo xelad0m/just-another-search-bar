@@ -45,6 +45,15 @@ const ENTER_KEYS = [
 let getFocusTimerID = null;
 
 
+function quoteFix(str) {
+    return str.replaceAll("'", "%27")
+              .replaceAll("\"", "%22")
+              .replaceAll("`", "%60")
+              .replaceAll("#", "%23")
+              .replaceAll("&", "%26");
+}
+
+
 export default class SearchIndicator extends Extension {
     enable() {
         
@@ -150,7 +159,7 @@ class Indicator extends PanelMenu.Button {
     }
 
     _compileCommand(template, wildcard, delimiter, query) {
-        query = String(query).trim().replace(/ /g, String(delimiter));
+        query = quoteFix(String(query).trim().replace(/ /g, String(delimiter)));
         return (wildcard != '') ? String(template).replace(String(wildcard), query) 
                                 : String(template) + ' ' + query;
     }
@@ -167,7 +176,7 @@ class Indicator extends PanelMenu.Button {
             GLib.spawn_command_line_async(command);
         } catch (e) {
             logError(e, `[ Search Bar ] [Error spawning command]: ${command}`);
-            Main.notify(_("Can't open ") + `${cmdName}`);
+            Main.notify(_("Can't open ") + `${cmdName}` + " (" + `${query}` + ")");
             throw e
         }
     }
