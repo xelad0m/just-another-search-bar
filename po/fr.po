@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3\n"
 
-#: extension.js:170
+#: extension.js:179
 msgid "Can't open "
 msgstr "Impossible d'ouvrir : "
 

@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:170
+#: extension.js:179
 msgid "Can't open "
 msgstr "Не могу открыть "
 
